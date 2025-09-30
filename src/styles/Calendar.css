@@ -5,6 +5,24 @@
   margin: 0 auto;
   background: var(--secondary-bg, #f9fafb);
   box-shadow: var(--shadow, 0 4px 12px rgba(0, 0, 0, 0.05));
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar-visible .checking-admin {
+  margin-left: 250px;
+  width: calc(100vw - 250px);
+}
+
+@media (max-width: 767px) {
+  .checking-admin {
+    margin-left: 0;
+    width: 100vw;
+    padding: 12px;
+  }
+  .sidebar-visible .checking-admin {
+    margin-left: 250px;
+    width: calc(100vw - 250px);
+  }
 }
 
 /* Formulaire filtre / login / view */
@@ -259,6 +277,31 @@
   color: var(--accent-green, #22c55e);
 }
 
+/* Tooltip for presence duration */
+.calendar-day.presence:hover .presence-tooltip {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.presence-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: -30px; /* Position above the day */
+  background: var(--accent-green, #22c55e);
+  color: var(--primary-bg, #ffffff);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+  z-index: 10;
+  transform: translateY(5px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 /* Styles pour milestones */
 .calendar-day.milestone {
   background: linear-gradient(135deg, rgba(234, 179, 8, 0.2), rgba(234, 179, 8, 0.1));
@@ -308,6 +351,9 @@
   padding: 12px;
   background: var(--primary-bg, #ffffff);
   box-shadow: var(--shadow, 0 4px 12px rgba(0, 0, 0, 0.05));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .important-dates h4 {
@@ -322,21 +368,34 @@
   font-size: 1rem;
   font-weight: 500;
   color: var(--text-primary, #1f2937);
-  margin: 8px 0;
+  margin: 0 0 4px 0; /* Reduced bottom margin for tighter spacing */
   font-family: 'Inter', sans-serif;
 }
 
 .important-dates ul {
   list-style: none;
-  padding: 0;
+  padding: 0 0 0 16px; /* Slight indent for consistency with blackholed-date */
+  margin: 0;
 }
 
 .important-dates li,
 .important-dates p {
   font-size: 0.95rem;
   color: var(--text-primary, #1f2937);
-  margin-bottom: 6px;
+  margin: 0 0 6px 0;
   font-family: 'Inter', sans-serif;
+  text-align: left;
+}
+
+.milestone-dates,
+.blackholed-date {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.blackholed-date p {
+  margin: 0 0 0 16px; /* Align with milestone list items */
 }
 
 /* Alert warning */
@@ -414,6 +473,12 @@
   .alert-warning {
     font-size: 0.9rem;
   }
+
+  .presence-tooltip {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+    top: -25px; /* Adjusted for smaller screens */
+  }
 }
 
 @media (max-width: 480px) {
@@ -464,5 +529,11 @@
 
   .alert-warning {
     font-size: 0.85rem;
+  }
+
+  .presence-tooltip {
+    font-size: 0.65rem;
+    padding: 2px 5px;
+    top: -20px; /* Further adjusted for smaller screens */
   }
 }
