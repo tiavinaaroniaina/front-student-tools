@@ -1,0 +1,15 @@
+@@ .. @@
+ /* 3. Composants principaux */
+ @import './styles/header.css';
+ @import './styles/sidebar.css';
+ @import './styles/dashboard.css';
+ @import './styles/forms.css';
+ @import './styles/popup.css';
+ @import './styles/server-error.css';
+ @import './styles/check.css';
+ @import './styles/Calendar.css';
++@import './styles/search-filter.css';
++@import './styles/animated-alert.css';
+ 
+ /* 4. Utilitaires et animations */
+ @import './styles/utilities.css';
